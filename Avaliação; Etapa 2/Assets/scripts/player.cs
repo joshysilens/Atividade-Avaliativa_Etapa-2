@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
         {
             gameObject.transform.position += new Vector3(-velocidade * Time.deltaTime,0,0);
             sprite.flipX = true;
+
             andando = true;
         }
         
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
         {
             gameObject.transform.position += new Vector3(velocidade * Time.deltaTime,0,0);
             sprite.flipX = false;
+
             andando = true;
         }
 
@@ -45,8 +47,9 @@ public class Player : MonoBehaviour
             rb.AddForce(new Vector2(0,forcaDoPulo), ForceMode2D.Impulse);
         }
 
-        animator.SetBool("Andando",andando);
-        animator.SetBool("Pulo",!noChao);
+        //animacoes
+        animator.SetBool("Andando", andando);
+        animator.SetBool("Pulo", !noChao);
         
     }
 
@@ -58,6 +61,7 @@ public class Player : MonoBehaviour
             noChao = true;
         }
     }
+    
 
     void OnCollisionExit2D(Collision2D colisao)
     {
@@ -66,4 +70,15 @@ public class Player : MonoBehaviour
             noChao = false;
         }
     }
+
+
+    private void OnCollisionStay2D(Collision2D colisao)
+    {
+        //if (colisao.gameObject.tag == "Chao")
+        if(colisao.gameObject.CompareTag("Chao"))
+        {
+            noChao = true;
+        }
+    }
+
 }
