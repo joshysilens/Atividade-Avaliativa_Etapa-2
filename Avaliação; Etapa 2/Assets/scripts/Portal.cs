@@ -3,13 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    public string Fase2;
+    public string nomeDaCena;
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && Fase2 != "")
+        if (other.gameObject.CompareTag("Player") && nomeDaCena != "")
         {
-            SceneManager.LoadScene(Fase2);          
+            SceneManager.LoadScene(nomeDaCena);          
         }
     }
 }
